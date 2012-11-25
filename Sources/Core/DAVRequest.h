@@ -48,6 +48,8 @@ extern NSString *const DAVClientErrorDomain;
 
 @optional
 
+- (void)requestWillBegin:(DAVRequest *)aRequest withConnection:(NSURLConnection *)connection;
+
 - (void)requestDidBegin:(DAVRequest *)aRequest;
 
 @end
