@@ -84,7 +84,7 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
     
     NSMutableURLRequest *mutableRequest = [self request];
 	
-    if ([_delegate respondsToSelector:@selector(requestDidBegin:withMutableRequest:)])
+    if ([_delegate respondsToSelector:@selector(requestWillBegin:withMutableRequest:)])
 		[_delegate requestWillBegin:self withMutableRequest:mutableRequest];
     
     _executing = YES;
