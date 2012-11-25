@@ -82,16 +82,13 @@ NSString *const DAVClientErrorDomain = @"com.MattRajca.DAVKit.error";
 	
 	[self willChangeValueForKey:@"isExecuting"];
     
+    NSMutableURLRequest *mutableRequest = [self request];
 	
-	_connection = [[NSURLConnection alloc] initWithRequest:[self request]
-												delegate:self
-                                                startImmediately:NO];
-	
-    if ([_delegate respondsToSelector:@selector(requestDidBegin:withConnection:)])
-		[_delegate requestWillBegin:self withConnection:_connection];
+    if ([_delegate respondsToSelector:@selector(requestDidBegin:withMutableRequest:)])
+		[_delegate requestWillBegin:self withMutableRequest:mutableRequest];
     
     _executing = YES;
-    [_connection start];
+	_connection = [NSURLConnection connectionWithRequest:mutableRequest delegate:self];
     
 	if ([_delegate respondsToSelector:@selector(requestDidBegin:)])
 		[_delegate requestDidBegin:self];
